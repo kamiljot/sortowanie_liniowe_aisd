@@ -24,7 +24,7 @@ int** Loader(int n){
 
 node** Sort(int** tab, int n){
     node** sor;
-    sor = new node*[n - 1];
+    sor = new node*[n];
 
     for (int i = 0; i < n; i++){
         sor[i] = nullptr;
