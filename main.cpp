@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
 
+/*
 struct node{
     int numb;
     node* next;
 };
+*/
 
 int** Loader(int n){
     int input = 0;
@@ -22,6 +24,7 @@ int** Loader(int n){
     return tab;
 }
 
+/*
 node** Sort(int** tab, int n){
     node** sor;
     sor = new node*[n];
@@ -42,6 +45,37 @@ node** Sort(int** tab, int n){
 
 }
 
+ */
+
+int** Sort(int** tab, int* counter, int n){
+    int** sorted;
+    sorted = new int*[n];
+
+    for (int i = 0; i < n; i++){
+        sorted[i] = new int[counter[i]];
+    }
+
+}
+
+int* Zero(int n){
+    int* tab;
+    tab = new int[n];
+    for (int i = 0; i < n; i++){
+        tab[i] = 0;
+    }
+    return tab;
+}
+
+int* Count(int** tab, int n){
+    int* counter;
+    counter = Zero(n);
+
+    for (int i = 0; i < n; i++){
+        counter[tab[i][0]]++;
+    }
+    return counter;
+}
+
 void Printer0(int** tab, int n){
     for (int i = 0; i < n; i++){
         cout << tab[i][0] << endl;
@@ -54,34 +88,45 @@ void Printer1(int** tab, int n){
     }
 }
 
+void CounterPrinter(int* counter, int n){
+    for (int i = 0; i < n; i++){
+        cout << i << ". " << counter[i] << endl;
+    }
+}
+
+/*
 void TestPrinter(node* sor){
     while (sor != nullptr){
         cout << sor->numb << endl;
         sor = sor->next;
     }
 }
-
+*/
 
 
 int main() {
 
     int n;
     int** tab;
-    node** sor;
+    int* counter;
+   // node** sor;
     cin >> n;
     tab = Loader(n);
+    counter = Count(tab, n);
+    CounterPrinter(counter, n);
+
+   /*
     sor = Sort(tab, n);
 
     for (int i = 0; i < n; i++){
         TestPrinter(sor[i]);
     }
-
+*/
 
     Printer0(tab, n);
     Printer1(tab, n);
 
-    delete [] tab[0];
-    delete [] tab[1];
+    delete [] *tab;
 
     return 0;
 }
